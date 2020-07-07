@@ -1,0 +1,19 @@
+<body>
+  <h1><%= link_to "Shelter List", "/shelters" %></h1>
+  <h2><%= link_to "Pet List", "/pets" %></h2>
+  <h3>Edit Pet</h3>
+
+  <%= form_tag "/pets/#{@pet.id}", method: :patch do %>
+    <%= label_tag :image %>
+    <%= text_field_tag :image %>
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
+    <%= label_tag :description %>
+    <%= text_field_tag :description %>
+    <%= label_tag :approx_age %>
+    <%= text_field_tag :approx_age %>
+    <%= label_tag :sex%>
+    <%= text_field_tag :sex%>
+    <%= submit_tag "Update Pet" %>
+  <% end %>
+</body>
