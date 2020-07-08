@@ -31,21 +31,44 @@ RSpec.describe "shelters show page" do
     expect(page).to have_css("img[src='#{@review2.pic}']")
   end
 
-  it "can click a link to access a review form" do
+  it "can see a link to edit each review" do
+
     visit "/shelters/#{@shelter_1.id}"
 
-    click_on "New Review"
+    within("#review-#{@review1.id}") do
+      click_on "Edit Review"
+    end
 
-    expect(current_path).to eq("/shelters/#{@shelter_1.id}/new_review")
-    fill_in :title, with: "Lovely Animal care"
-    fill_in :rating, with: 4
-    fill_in :content, with: "I can't believe how good the shelter took care of my baby"
-    expect(page).to have_field(:pic)
-    click_on "Submit Review"
-
+    fill_in :title, with: "Title change"
+    fill_in :rating, with: 5
+    fill_in :content, with: "Content Change"
+    click_on "Update Review"
     expect(current_path).to eq("/shelters/#{@shelter_1.id}")
-    expect(page).to have_content("Lovely Animal care")
-    expect(page).to have_content(4)
-    expect(page).to have_content("I can't believe how good the shelter took care of my baby")
+
+    within("#review-#{@review1.id}") do
+     expect(page).to have_content("Title change")
+     expect(page).to have_content(5)
+     expect(page).to have_content("Content Change")
+     expect(page).to_not have_content("Great Shelter")
+   end
+  end
+
+  it "sees a flash message when I am trying to edit a review and I don't fill in all field, except pic" do
+    visit "/shelters/#{@shelter_1.id}"
+
+    within("#review-#{@review1.id}") do
+      click_on "Edit Review"
+    end
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/#{@review1.id}/edit")
+
+    fill_in :title, with: "Title change"
+    fill_in :rating, with: 5
+    click_on "Update Review"
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/#{@review1.id}/edit")
+  
+
+    expect(page).to have_content("All fields except image must filled.")
   end
 end

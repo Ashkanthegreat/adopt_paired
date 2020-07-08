@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   get '/shelters/:id/pets/new', to: 'shelters_pets#new'
   post '/shelters/:id/pets', to: 'shelters_pets#create'
 
-  get '/shelters/:id/new_review', to: 'reviews#new'
-  post '/shelters/:id', to: 'reviews#create'
+  get '/shelters/:id/reviews/new', to: 'reviews#new'
+  get '/shelters/:id/:review_id/edit', to: 'reviews#edit'
+  patch '/shelters/:id/:review_id', to: 'reviews#update'
+  post '/shelters/:id/reviews', to: 'reviews#create'
+  delete '/shelters/:id/:review_id', to: 'reviews#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
