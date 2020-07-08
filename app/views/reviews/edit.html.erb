@@ -1,6 +1,6 @@
-<h1>New Review</h1>
+<h1>Edit Review</h1>
 
-<%= form_tag "/shelters/#{@shelter.id}/reviews" do %>
+<%= form_tag "/shelters/#{@review.shelter.id}/#{@review.id}", method: :patch do %>
   <%= label_tag :title %>
   <%= text_field_tag :title%>
   <%= label_tag :rating %>
@@ -9,9 +9,8 @@
   <%= text_field_tag :content %>
   <%= label_tag :pic %>
   <%= text_field_tag :pic %>
-  <%= submit_tag "Submit Review" %>
+  <%= submit_tag "Update Review" %>
 <% end %>
-
 
 <% flash.each do |name,msg| %>
   <%= content_tag :div, msg, class: name %>
