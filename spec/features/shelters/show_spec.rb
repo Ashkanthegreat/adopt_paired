@@ -51,6 +51,24 @@ RSpec.describe "shelters show page" do
      expect(page).to have_content("Content Change")
      expect(page).to_not have_content("Great Shelter")
    end
+  end
 
+  it "sees a flash message when I am trying to edit a review and I don't fill in all field, except pic" do
+    visit "/shelters/#{@shelter_1.id}"
+
+    within("#review-#{@review1.id}") do
+      click_on "Edit Review"
+    end
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/#{@review1.id}/edit")
+
+    fill_in :title, with: "Title change"
+    fill_in :rating, with: 5
+    click_on "Update Review"
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/#{@review1.id}/edit")
+  
+
+    expect(page).to have_content("All fields except image must filled.")
   end
 end

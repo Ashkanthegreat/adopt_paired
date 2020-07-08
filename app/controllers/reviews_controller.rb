@@ -20,10 +20,14 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    review = Review.find(params[:review_id])
     shelter = Shelter.find(params[:id])
-    Review.update(review_params)
-    redirect_to "/shelters/#{shelter.id}"
-
+    if review.update(review_params)
+      redirect_to "/shelters/#{shelter.id}"
+    else
+      flash[:notice] = "All fields except image must filled."
+      redirect_to "/shelters/#{shelter.id}/#{review.id}/edit"
+    end
   end
 
   def destroy
