@@ -13,7 +13,7 @@ RSpec.describe "When creating a new review" do
 
     click_on "New Review"
 
-    expect(current_path).to eq("/shelters/#{@shelter_1.id}/new_review")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/new")
     fill_in :title, with: "Lovely Animal care"
     fill_in :rating, with: 4
     fill_in :content, with: "I can't believe how good the shelter took care of my baby"
@@ -31,7 +31,7 @@ RSpec.describe "When creating a new review" do
 
     click_on "New Review"
 
-    expect(current_path).to eq("/shelters/#{@shelter_1.id}/new_review")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/new")
     fill_in :title, with: "Lovely Animal care"
     click_on "Submit Review"
 

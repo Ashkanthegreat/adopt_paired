@@ -11,8 +11,14 @@ class ReviewsController < ApplicationController
       redirect_to "/shelters/#{@shelter.id}"
     else
       flash[:notice] = "All fields except image must filled."
-      redirect_to "/shelters/#{@shelter.id}/new_review"
+      redirect_to "/shelters/#{@shelter.id}/reviews/new"
     end
+  end
+
+  def destroy
+    Review.destroy(params[:review_id])
+    shelter = Shelter.find(params[:id])
+    redirect_to "/shelters/#{shelter.id}"
   end
 
   private
