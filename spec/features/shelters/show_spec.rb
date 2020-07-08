@@ -30,4 +30,27 @@ RSpec.describe "shelters show page" do
     expect(page).to have_content(@review2.content)
     expect(page).to have_css("img[src='#{@review2.pic}']")
   end
+
+  it "can see a link to edit each review" do
+
+    visit "/shelters/#{@shelter_1.id}"
+
+    within("#review-#{@review1.id}") do
+      click_on "Edit Review"
+    end
+
+    fill_in :title, with: "Title change"
+    fill_in :rating, with: 5
+    fill_in :content, with: "Content Change"
+    click_on "Update Review"
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}")
+
+    within("#review-#{@review1.id}") do
+     expect(page).to have_content("Title change")
+     expect(page).to have_content(5)
+     expect(page).to have_content("Content Change")
+     expect(page).to_not have_content("Great Shelter")
+   end
+
+  end
 end

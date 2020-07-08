@@ -1,0 +1,13 @@
+<h1>Edit Review</h1>
+
+<%= form_tag "/shelters/#{@review.shelter.id}/#{@review.id}", method: :patch do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title%>
+  <%= label_tag :rating %>
+  <%= text_field_tag :rating %>
+  <%= label_tag :content %>
+  <%= text_field_tag :content %>
+  <%= label_tag :pic %>
+  <%= text_field_tag :pic %>
+  <%= submit_tag "Update Review" %>
+<% end %>
