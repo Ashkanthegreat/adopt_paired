@@ -7,7 +7,12 @@ class ReviewsController < ApplicationController
   def create
     @shelter = Shelter.find(params[:id])
     @review = @shelter.reviews.create(review_params)
-    redirect_to "/shelters/#{@shelter.id}"
+    if @review.save
+      redirect_to "/shelters/#{@shelter.id}"
+    else
+      flash[:notice] = "All fields except image must filled."
+      redirect_to "/shelters/#{@shelter.id}/new_review"
+    end
   end
 
   private

@@ -11,3 +11,8 @@
   <%= text_field_tag :pic %>
   <%= submit_tag "Submit Review" %>
 <% end %>
+
+
+<% flash.each do |name,msg| %>
+  <%= content_tag :div, msg, class: name %>
+<% end %>

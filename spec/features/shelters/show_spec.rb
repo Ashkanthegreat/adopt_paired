@@ -30,22 +30,4 @@ RSpec.describe "shelters show page" do
     expect(page).to have_content(@review2.content)
     expect(page).to have_css("img[src='#{@review2.pic}']")
   end
-
-  it "can click a link to access a review form" do
-    visit "/shelters/#{@shelter_1.id}"
-
-    click_on "New Review"
-
-    expect(current_path).to eq("/shelters/#{@shelter_1.id}/new_review")
-    fill_in :title, with: "Lovely Animal care"
-    fill_in :rating, with: 4
-    fill_in :content, with: "I can't believe how good the shelter took care of my baby"
-    expect(page).to have_field(:pic)
-    click_on "Submit Review"
-
-    expect(current_path).to eq("/shelters/#{@shelter_1.id}")
-    expect(page).to have_content("Lovely Animal care")
-    expect(page).to have_content(4)
-    expect(page).to have_content("I can't believe how good the shelter took care of my baby")
-  end
 end
