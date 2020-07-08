@@ -11,6 +11,8 @@
 
 <p><%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete%></p>
 
+<p><%= link_to "New Review", "/shelters/#{@shelter.id}/new_review"%></p>
+
 <footer><%= link_to "All Pets Here", "/shelters/#{@shelter.id}/pets" %></footer>
 
 <% @shelter.reviews.each do |review| %>
@@ -20,4 +22,4 @@
   <% if review.pic != nil %>
   <img src=<%= review.pic %>
   <% end %>
-<% end %>  
+<% end %>
