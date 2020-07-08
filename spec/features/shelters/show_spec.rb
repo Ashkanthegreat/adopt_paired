@@ -4,8 +4,8 @@ RSpec.describe "shelters show page" do
   before :each do
     @shelter_1 = Shelter.create(name: "Habitat for Hippos", address: "184 w Plaintiff rd", city: "Denver", state: "CO", zip: 80504)
 
-    @review1 = @shelter1.reviews.create!(title: "Great Shelter", rating: 4, content: "I had an amazing experience", pic: nil)
-    @review2 = @shelter1.reviews.create!(title: "Amazing Rescue", rating: 5, content: "Super friendly staff", pic: "https://imgur.com/rjS5VMO")
+    @review1 = @shelter_1.reviews.create(title: "Great Shelter", rating: 4, content: "I had an amazing experience", pic: nil)
+    @review2 = @shelter_1.reviews.create(title: "Amazing Rescue", rating: 5, content: "Super friendly staff", pic: "https://imgur.com/rjS5VMO")
   end
   it "shows the shelter's name, address, city, state, and zip for a specific shelter" do
 
@@ -31,14 +31,3 @@ RSpec.describe "shelters show page" do
     expect(page).to have_css("img[src='#{@review2.pic}']")
   end
 end
-
-# User Story 2, Shelter Reviews
-#
-# As a visitor,
-# When I visit a shelter's show page,
-# I see a list of reviews for that shelter
-# Each review will have:
-# - title
-# - rating
-# - content
-# - an optional picture
