@@ -1,9 +1,14 @@
 <body>
-  <h1><%= link_to "Shelter List", "/shelters" %></h1>
-  <h2><%= link_to "Pet List", "/pets" %></h2>
   <h3><%= @pet.name %></h3>
 
+  <% flash.each do |name, msg| %>
+  <section class = <%= name %>>
+    <p><%= msg %></p>
+  </section>
+  <% end %>
+
   <img src= <%= @pet.image %>>
+  <%= link_to "Favorite this Pet", "/favorites/#{@pet.id}", method: :patch %>
   <p>Description: <%= @pet.description %></p>
   <p>Age: <%= @pet.approx_age %></p>
   <p>Sex: <%= @pet.sex %></p>
