@@ -1,5 +1,5 @@
-<h1><%= link_to "Shelter List", "/shelters" %></h1>
-<h2><%= link_to "Pet List", "/pets" %></h2>
+<body>
+
 <h3><%= @shelter.name %></h3>
 
 <p>Address: <%= @shelter.address %></p>
@@ -27,3 +27,5 @@
   <%= link_to "Delete Review", "/shelters/#{@shelter.id}/#{review.id}", method: :delete%>
 </section>
 <% end %>
+
+</body>
