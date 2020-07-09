@@ -44,6 +44,19 @@ RSpec.describe "When I visit the favorites iindex page" do
     expect(page).to have_css("img[src='#{@pet_1.image}']")
     expect(page).to have_content(@pet_2.name)
     expect(page).to have_css("img[src='#{@pet_2.image}']")
-    save_and_open_page
+  end
+
+  it "can click on favorites indicator on any page and it takes you to favorites index page" do
+
+    visit "/pets/#{@pet_1.id}"
+
+    click_on "Favorite this Pet"
+
+    visit "/pets"
+
+    click_on "Favorite Pets: 1"
+
+    expect(current_path).to eq("/favorites")
+
   end
 end
