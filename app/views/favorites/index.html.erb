@@ -1,0 +1,9 @@
+<body>
+  <h1>All your Favorites</h1>
+
+  <% @favorites.each do |favorite| %>
+    <% pet = Pet.find(favorite) %>
+    <p><%= pet.name %></p>
+    <img src= "<%= pet.image %>">
+  <% end %>
+</body>
