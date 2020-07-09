@@ -54,4 +54,26 @@ RSpec.describe "When I visit the favorites iindex page" do
 
   end
 
+  it "Can remove a pet from favorites from favorites index page" do
+    visit "/pets/#{@pet_1.id}"
+
+    click_on "Favorite this Pet"
+
+    visit "/pets/#{@pet_2.id}"
+
+    click_on "Favorite this Pet"
+
+    visit "/favorites"
+
+    within("#favorite-#{@pet_1.id}") do
+      click_on "Remove From Favorites"
+    end
+
+    expect(current_path).to eq("/favorites")
+
+    expect(page).to_not have_content(@pet_1.name)
+    expect(page).to_not have_css("img[src='#{@pet_1.image}']")
+    expect(page).to have_content(@pet_2.name)
+    expect(page).to have_css("img[src='#{@pet_2.image}']")
+  end
 end

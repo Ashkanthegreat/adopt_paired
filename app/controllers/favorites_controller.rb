@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
     @pet = Pet.find(params[:pet_id])
     session[:favorites].delete(@pet.id)
     flash[:notice] = "#{@pet.name} removed from favorites"
-    redirect_to "/pets/#{@pet.id}"
+    redirect_to request.referrer
   end
 
 end
