@@ -9,6 +9,22 @@
   </head>
 
   <body>
+      <header class='clearfix'>
+        <div class="left-nav">
+          <ul>
+            <li><%= link_to "Shelters", "/shelters"  %></li>
+          </ul>
+        </div>
+        <div class="right-nav">
+          <ul>
+            <li><%= link_to "Pets", "/pets"  %></li>
+          </ul>
+        </div>
+        <div>
+        <%= image_tag("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/95a0164f-da56-48eb-a63a-d16825bb894d/d7zbo7a-23bedec1-c147-4361-90d0-422312f94427.jpg/v1/fill/w_1024,h_164,q_75,strp/pokemon_panorama_color_pencil_by_kanetakeo_d7zbo7a-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD0xNjQiLCJwYXRoIjoiXC9mXC85NWEwMTY0Zi1kYTU2LTQ4ZWItYTYzYS1kMTY4MjViYjg5NGRcL2Q3emJvN2EtMjNiZWRlYzEtYzE0Ny00MzYxLTkwZDAtNDIyMzEyZjk0NDI3LmpwZyIsIndpZHRoIjoiPD0xMDI0In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.f-CmJ8cM1YkQuSvR2Ij-vrsZzZ6MLEtTWWQCMTHAJEQ", id: "headerPic", height: 200, width: "100%" ) %>
+      </div>
+
+      </header>
     <%= yield %>
   </body>
 </html>
