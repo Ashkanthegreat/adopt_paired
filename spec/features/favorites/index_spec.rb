@@ -44,6 +44,5 @@ RSpec.describe "When I visit the favorites iindex page" do
     expect(page).to have_css("img[src='#{@pet_1.image}']")
     expect(page).to have_content(@pet_2.name)
     expect(page).to have_css("img[src='#{@pet_2.image}']")
-    save_and_open_page
   end
 end
