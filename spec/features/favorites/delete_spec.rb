@@ -10,7 +10,8 @@ RSpec.describe "When I visit the favorites iindex page" do
       description: "682 lbs of hugs and love",
       approx_age: 5,
       sex: "F",
-      adoptability: false)
+      adoptability: false
+      )
 
     @pet_2 = shelter_2.pets.create(image: "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/01/12201051/cute-puppy-body-image.jpg",
       name: "Credence",
@@ -27,7 +28,33 @@ RSpec.describe "When I visit the favorites iindex page" do
       adoptability: true)
   end
 
-  it "Will show all pets I've favorited" do
+  it "Can remove a pet from favorites from show page" do
+    visit "/pets/#{@pet_1.id}"
+
+    click_on "Favorite this Pet"
+
+    visit "/pets/#{@pet_2.id}"
+
+    click_on "Favorite this Pet"
+
+    visit "/pets/#{@pet_1.id}"
+
+    expect(page).to_not have_content("Favorite this Pet")
+
+    expect(page).to have_content("Remove From Favorites")
+
+    click_on "Remove From Favorites"
+
+    expect(current_path).to eq("/pets/#{@pet_1.id}")
+
+    expect(page).to have_content("#{@pet_1.name} removed from favorites")
+
+    expect(page).to have_content("Favorite this Pet")
+    expect(page).to have_content("Favorite Pets: 1")
+
+  end
+
+  it "Can remove a pet from favorites from favorites index page" do
     visit "/pets/#{@pet_1.id}"
 
     click_on "Favorite this Pet"
@@ -37,29 +64,16 @@ RSpec.describe "When I visit the favorites iindex page" do
     click_on "Favorite this Pet"
 
     visit "/favorites"
-    expect(page).to have_content("Favorite Pets: 2")
+
+    within("#favorite-#{@pet_1.id}") do
+      click_on "Remove From Favorites"
+    end
 
     expect(current_path).to eq("/favorites")
-    expect(page).to have_content(@pet_1.name)
-    expect(page).to have_css("img[src='#{@pet_1.image}']")
+
+    expect(page).to_not have_content(@pet_1.name)
+    expect(page).to_not have_css("img[src='#{@pet_1.image}']")
     expect(page).to have_content(@pet_2.name)
     expect(page).to have_css("img[src='#{@pet_2.image}']")
-<<<<<<< HEAD
-=======
-  end
-
-  it "can click on favorites indicator on any page and it takes you to favorites index page" do
-
-    visit "/pets/#{@pet_1.id}"
-
-    click_on "Favorite this Pet"
-
-    visit "/pets"
-
-    click_on "Favorite Pets: 1"
-
-    expect(current_path).to eq("/favorites")
-
->>>>>>> d8ef0afb192dc3b59e454198dd2e15595109bb4e
   end
 end

@@ -2,8 +2,14 @@
   <h1>All your Favorites</h1>
 
   <% @favorites.each do |favorite| %>
+  <section id= "favorite-<%= favorite %>">
+    <%= link_to "Remove From Favorites", "/favorites/#{favorite}", method: :delete %>
+
     <% pet = Pet.find(favorite) %>
     <p><%= pet.name %></p>
     <img src= "<%= pet.image %>">
+  </section>
   <% end %>
+
+
 </body>
