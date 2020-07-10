@@ -44,8 +44,6 @@ RSpec.describe "When I visit the favorites iindex page" do
     expect(page).to have_css("img[src='#{@pet_1.image}']")
     expect(page).to have_content(@pet_2.name)
     expect(page).to have_css("img[src='#{@pet_2.image}']")
-<<<<<<< HEAD
-=======
   end
 
   it "can click on favorites indicator on any page and it takes you to favorites index page" do
@@ -60,6 +58,10 @@ RSpec.describe "When I visit the favorites iindex page" do
 
     expect(current_path).to eq("/favorites")
 
->>>>>>> d8ef0afb192dc3b59e454198dd2e15595109bb4e
+  end
+
+  it "will give a message if there are no pets favorited" do
+    visit '/favorites'
+    expect(page).to have_content("You have no favorited pets")
   end
 end
