@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "When I visit the favorites iindex page" do
+RSpec.describe "When I visit the favorites index page" do
   before :each do
     shelter_1 = Shelter.create(name: "Habitat for Hippos and Lemurs", address: "184 w Plaintiff rd", city: "Denver", state: "CO", zip: 80504)
     shelter_2 = Shelter.create(name: "Loving Arms", address: "234 Lugie rd", city: "Montrose", state: "AR", zip: 90876)
@@ -75,5 +75,22 @@ RSpec.describe "When I visit the favorites iindex page" do
     expect(page).to_not have_css("img[src='#{@pet_1.image}']")
     expect(page).to have_content(@pet_2.name)
     expect(page).to have_css("img[src='#{@pet_2.image}']")
+  end
+
+  it "Can remove all pets from favorites from favorites index page" do
+    visit "/pets/#{@pet_1.id}"
+
+    click_on "Favorite this Pet"
+
+    visit "/pets/#{@pet_2.id}"
+
+    click_on "Favorite this Pet"
+
+    visit "/favorites"
+
+    click_on "Remove all favorited pets"
+    expect(current_path).to eq('/favorites')
+    expect(page).to have_content("You have no favorited pets")
+    expect(page).to have_content("Favorite Pets: 0")
   end
 end

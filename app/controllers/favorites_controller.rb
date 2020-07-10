@@ -19,4 +19,9 @@ class FavoritesController < ApplicationController
     redirect_to request.referrer
   end
 
+  def destroy_all
+    session[:favorites].clear
+    redirect_to "/favorites"
+  end
+
 end
