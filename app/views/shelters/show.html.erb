@@ -1,5 +1,5 @@
-<h1><%= link_to "Shelter List", "/shelters" %></h1>
-<h2><%= link_to "Pet List", "/pets" %></h2>
+<body>
+
 <h3><%= @shelter.name %></h3>
 
 <p>Address: <%= @shelter.address %></p>
@@ -16,14 +16,16 @@
 <footer><%= link_to "All Pets Here", "/shelters/#{@shelter.id}/pets" %></footer>
 
 <% @shelter.reviews.each do |review| %>
-<section id= "review-<%= review.id %>">
+<section>
   <p><%= review.title %></p>
   <p><%= review.rating %></p>
   <p><%= review.content %></p>
   <% if review.pic != nil %>
-  <img src=<%= review.pic %>
-  <% end %><br>
+    <img src=<%= review.pic %><br>
+  <% end %>
   <%= link_to "Edit Review", "/shelters/#{@shelter.id}/#{review.id}/edit" %><br>
   <%= link_to "Delete Review", "/shelters/#{@shelter.id}/#{review.id}", method: :delete%>
 </section>
 <% end %>
+
+</body>
