@@ -7,6 +7,8 @@
   </section>
   <% end %>
 
+  <%= link_to "View all Applicants", "/pets/#{@pet.id}/applicants" %>
+
   <img src= <%= @pet.image %>>
 
   <% if favorites.include?(@pet.id) %>

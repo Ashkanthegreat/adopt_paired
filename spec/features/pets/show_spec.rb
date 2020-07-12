@@ -26,6 +26,27 @@ RSpec.describe "When visiting a pet's page" do
         sex: "M",
         adoptability: true)
 
+    @application_1 = Application.create(name: "Chandler",
+    address: "134 Italy way",
+    city: "Longmont",
+    state: "CO",
+    zip: "89767",
+    phone_num: "7208765647",
+    description: "Love em all")
+
+    @application_2 = Application.create(name: "Ash",
+    address: "176 Coocaracha way",
+    city: "Denvert",
+    state: "CO",
+    zip: "89765",
+    phone_num: "72087699876",
+    description: "My Collection is almost complete!")
+
+    PetApplication.create(pet_id: @pet_1.id, application_id: @application_1.id)
+    PetApplication.create(pet_id: @pet_2.id, application_id: @application_1.id)
+    PetApplication.create(pet_id: @pet_2.id, application_id: @application_2.id)
+    PetApplication.create(pet_id: @pet_3.id, application_id: @application_2.id)
+
   end
 
   it "I can see all of a pets info" do
@@ -36,5 +57,17 @@ RSpec.describe "When visiting a pet's page" do
     expect(page).to have_content(@pet_1.approx_age)
     expect(page).to have_content(@pet_1.sex)
     expect(page).to have_content("Adoption is Pending")
+  end
+
+  it "has links to all it's applications" do
+    visit "/pets/#{@pet_2.id}"
+
+    click_on "View all Applicants"
+    expect(current_path).to eq("/pets/#{@pet_2.id}/applicants")
+    expect(page).to have_content("Chandler")
+    expect(page).to have_content("Ash")
+
+    click_on "Chandler"
+    expect(current_path).to eq("/applications/#{@application_1.id}")
   end
 end
