@@ -30,5 +30,6 @@ Rails.application.routes.draw do
 
   get "/applications/new", to: 'applications#new'
   post "/applications", to: 'applications#create'
+  get '/applications/:id', to: 'applications#show'
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
