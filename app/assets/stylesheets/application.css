@@ -14,35 +14,5 @@
  *= require_self
  */
  body {
-   background-color: #ADD8E6;
-   text-align: center
- }
-
- h1 {
-   font-size: 15px;
-   text-align: right;
-   margin: 0px
- }
-
- h2{
-   font-size: 15px;
-   text-align: right;
-   margin: 0px
- }
-
- h3 {
-   font-size: 45px;
-   text-align: left
- }
-
- h4 {
-   font-size: 30px
- }
-
- footer{
-   text-align: left
- }
-
- img{
-   width: 30%
+   background-color: #6d7785;
  }
