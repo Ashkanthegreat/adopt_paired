@@ -1,0 +1,33 @@
+<h1>Application:</h1>
+
+<%= form_tag "/applications" do %>
+  <% @pets.each do |pet| %>
+  <section class = "<%= pet.name %>">
+    <%= label_tag pet.name %>
+    <%= check_box_tag "pet[]", pet.id, false%>
+  </section>
+  <% end %>
+
+<%= label_tag "Name" %>
+<%= text_field_tag :name %>
+
+<%= label_tag "Address" %>
+<%= text_field_tag :address %>
+
+<%= label_tag "City" %>
+<%= text_field_tag :city %>
+
+<%= label_tag "State" %>
+<%= text_field_tag :state %>
+
+<%= label_tag "Zip" %>
+<%= text_field_tag :zip %>
+
+<%= label_tag "Phone" %>
+<%= text_field_tag :phone_num %>
+
+<%= label_tag "Description" %>
+<%= text_field_tag :description %>
+
+<%= submit_tag "Submit Application" %>
+<% end %>
