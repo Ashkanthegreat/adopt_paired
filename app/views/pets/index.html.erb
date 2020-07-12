@@ -4,7 +4,7 @@
   <h3>All Pets</h3>
 
   <% @pets.each do |pet| %>
-    <img src=<%= pet.image %>>
+    <img src=<%= pet.image %> height="300" width="300">
     <p>Name: <%= link_to pet.name, "/pets/#{pet.id}" %></p>
     <p>Approximate Age: <%= pet.approx_age %></p>
     <p>Sex: <%= pet.sex %></p>

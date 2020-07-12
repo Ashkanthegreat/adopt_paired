@@ -8,23 +8,42 @@
 Shelter.destroy_all
 Pet.destroy_all
 
-shelter_1 = Shelter.create(name: "Habitat for Hippos and Lemurs", address: "184 w Plaintiff rd", city: "Denver", state: "CO", zip: 80504)
-shelter_2 = Shelter.create(name: "Loving Arms", address: "234 Lugie rd", city: "Montrose", state: "AR", zip: 90876)
+shelter_1 = Shelter.create(name: "Accumula Town Pokemon House", address: "271 Snivy Lane", city: "Accumula", state: "UV", zip: 80504)
+shelter_2 = Shelter.create(name: "Cerulean City Pokedex", address: "1444 Bulbasaur Drive", city: "Cerulean City", state: "KT", zip: 90876)
+shelter_3 = Shelter.create(name: "Ecruteak Pokemon Shelter", address: "19 Delibird St", city: "Ecruteak City", state: "JT", zip: 10122)
 
-shelter_1.pets.create(image: "https://resize.hswstatic.com/w_907/gif/hippo-sunscreen.jpg",
-  name: "Gloria",
-  description: "682 lbs of hugs and love",
+shelter_1.pets.create(image: "https://e7.pngegg.com/pngimages/999/1014/png-clipart-pokemon-x-and-y-pokemon-battle-revolution-pansage-pokemon-go-others-mammal-leaf.png",
+  name: "Pansage",
+  description: "This cheeky guy is a awesome partner for all your berry hunting trips",
   approx_age: 5,
-  sex: "F")
+  sex: "M")
 
-shelter_2.pets.create(image: "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/01/12201051/cute-puppy-body-image.jpg",
-  name: "Credence",
-  description: "A little shy at first but I'm a cuddler once I get to know you",
+shelter_2.pets.create(image: "https://attackofthefanboy.com/wp-content/uploads/2019/03/Pokemon-GO-How-to-Catch-Shiny-Machop-and-Mankey.jpg",
+  name: "Machop",
+  description: "This tough little guys muscles never get sore.  He is shiny and super rare, but no one has been able to get him.  Remember, a Pokemon has to choose you!",
   approx_age: 2,
   sex: "M")
 
-shelter_1.pets.create(image: "https://images.unsplash.com/photo-1531338410663-88d33379ba03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-  name: "Creole",
-  description: "I don't like other animal but I love my person",
-  approx_age: 4,
+shelter_1.pets.create(image: "https://gamepress.gg/pokemongo/sites/pokemongo/files/2019-06/613_0.png",
+  name: "Cubchoo",
+  description: "All Cubchoo needs is lots of love to evolve into a powerfull Pokemon",
+  approx_age: 1,
+  sex: "F")
+
+shelter_2.pets.create(image: "https://db.pokemongohub.net/images/official/full/092.png",
+  name: "Gastly",
+  description: "This ghost type Pokemon is hard to catch, but well worth it once she's yours!",
+  approx_age: 3,
+  sex: "F")
+
+shelter_3.pets.create(image: "https://img.rankedboost.com/wp-content/uploads/2016/08/Larvitar-Pokemon-Go.png",
+  name: "Larvitar",
+  description: "Born underground, this Pokemon is likes to spend all her time there.",
+  approx_age: 3,
+  sex: "F")
+
+shelter_3.pets.create(image: "https://static.pokemonpets.com/images/monsters-images-800-800/2239-Shiny-Elekid.png",
+  name: "Elekid",
+  description: "Don't let this Pokemon's size fool you. One touch from him, and you'll never see things the same!",
+  approx_age: 1,
   sex: "M")
