@@ -70,8 +70,7 @@ RSpec.describe "When I visit the favorites index page" do
     end
 
     expect(current_path).to eq("/favorites")
-
-    expect(page).to_not have_content(@pet_1.name)
+    expect(page).to have_content("#{@pet_1.name} removed from favorites")
     expect(page).to_not have_css("img[src='#{@pet_1.image}']")
     expect(page).to have_content(@pet_2.name)
     expect(page).to have_css("img[src='#{@pet_2.image}']")
