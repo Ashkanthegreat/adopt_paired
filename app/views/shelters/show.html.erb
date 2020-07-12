@@ -21,11 +21,14 @@
   <p><%= review.rating %></p>
   <p><%= review.content %></p>
   <% if review.pic != nil %>
-    <img src=<%= review.pic %><br>
+
+  <img src=<%= review.pic %>
   <% end %>
+  <br>
+
   <%= link_to "Edit Review", "/shelters/#{@shelter.id}/#{review.id}/edit" %><br>
   <%= link_to "Delete Review", "/shelters/#{@shelter.id}/#{review.id}", method: :delete%>
 </section>
 <% end %>
-
+  
 </body>

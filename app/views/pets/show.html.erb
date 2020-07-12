@@ -1,7 +1,20 @@
 <body>
   <h3><%= @pet.name %></h3>
 
+  <% flash.each do |name, msg| %>
+  <section class = <%= name %>>
+    <p><%= msg %></p>
+  </section>
+  <% end %>
+
   <img src= <%= @pet.image %>>
+
+  <% if favorites.include?(@pet.id) %>
+    <%= link_to "Remove From Favorites", "/favorites/#{@pet.id}", method: :delete %>
+  <% else %>
+   <%= link_to "Favorite this Pet", "/favorites/#{@pet.id}", method: :patch %>
+  <% end %>
+
   <p>Description: <%= @pet.description %></p>
   <p>Age: <%= @pet.approx_age %></p>
   <p>Sex: <%= @pet.sex %></p>
