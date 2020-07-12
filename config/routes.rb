@@ -22,5 +22,11 @@ Rails.application.routes.draw do
   patch '/shelters/:id/:review_id', to: 'reviews#update'
   post '/shelters/:id/reviews', to: 'reviews#create'
   delete '/shelters/:id/:review_id', to: 'reviews#destroy'
+
+  get "/favorites", to: 'favorites#index'
+  patch "/favorites/:pet_id", to: 'favorites#update'
+  delete "/favorites/:pet_id", to: 'favorites#destroy'
+  delete "/favorites", to: 'favorites#destroy_all'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

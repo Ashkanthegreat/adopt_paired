@@ -1,0 +1,21 @@
+<body>
+  <h3>All your Favorites</h3>
+
+  <% if favorites.count > 0 %>
+    <% @favorites.each do |favorite| %>
+      <section id= "favorite-<%= favorite %>">
+        <%= link_to "Remove From Favorites", "/favorites/#{favorite}", method: :delete %>
+
+        <% pet = Pet.find(favorite) %>
+        <p><%= pet.name %></p>
+        <img src= "<%= pet.image %>">
+      </section>
+    <% end %>
+  <% else %>
+    <p>You have no favorited pets</p>
+  <% end %>
+
+  <footer><%= link_to "Remove all favorited pets", "/favorites", method: :delete %></footer>
+
+
+</body>
