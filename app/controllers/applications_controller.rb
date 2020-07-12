@@ -7,14 +7,20 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    application = Application.create(app_params)
+    application = Application.new(app_params)
 
-    params["pet"].each do |id|
-      session[:favorites].delete(id.to_i)
-      PetApplication.create(pet_id: id.to_i, application_id: application.id)
+    if application.save
+      params["pet"].each do |id|
+        PetApplication.create!(pet_id: id.to_i, application_id: application.id)
+        session[:favorites].delete(id.to_i)
+      end
+      flash[:success] = "You have successfully submitted your application"
+      redirect_to "/favorites"
+    else
+      flash[:errors] = application.errors.full_messages.to_sentence
+      redirect_to "/applications/new"
     end
-    flash[:notice] = "You have successfully submitted your application"
-    redirect_to "/favorites"
+
   end
 
   def show

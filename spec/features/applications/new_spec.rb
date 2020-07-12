@@ -57,6 +57,34 @@ RSpec.describe "When I visit a new application page" do
     expect(current_path).to eq("/favorites")
     expect(page).to have_content("You have successfully submitted your application")
     expect(page).to_not have_content("Gloria")
-
   end
+
+  it "Shows error messages when applicant does not fill out all required info" do
+    visit "/pets/#{@pet_1.id}"
+
+    click_on "Favorite this Pet"
+
+    visit "/pets/#{@pet_2.id}"
+
+    click_on "Favorite this Pet"
+
+    visit "/favorites"
+
+    click_on "Apply for a new friend!"
+    expect(current_path).to eq('/applications/new')
+
+    within ".Gloria" do
+      check "pet[]"
+    end
+
+    fill_in :name, with: "Chandler"
+    fill_in :city, with: "Mead"
+    fill_in :description, with: "I love me some hippos"
+    click_on "Submit Application"
+
+    expect(current_path).to eq("/applications/new")
+
+    expect(page).to have_content("Address can't be blank, State can't be blank, Zip can't be blank, and Phone num can't be blank")
+  end
+
 end
