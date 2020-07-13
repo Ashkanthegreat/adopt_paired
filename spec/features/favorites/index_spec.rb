@@ -65,3 +65,11 @@ RSpec.describe "When I visit the favorites iindex page" do
     expect(page).to have_content("You have no favorited pets")
   end
 end
+
+# User Story 18, List of Pets that have applications on them
+#
+# As a visitor
+# After one or more applications have been created
+# When I visit the favorites index page
+# I see a section on the page that has a list of all of the pets that have at least one application on them
+# Each pet's name is a link to their show page
