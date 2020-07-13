@@ -34,8 +34,17 @@ RSpec.describe "When I visit an application's show page" do
       phone_num: "7208765647",
       description: "Love em all")
 
+    @application_2 = Application.create(name: "Ash",
+    address: "176 Coocaracha way",
+    city: "Denvert",
+    state: "CO",
+    zip: "89765",
+    phone_num: "72087699876",
+    description: "My Collection is almost complete!")
+
     PetApplication.create(pet_id: @pet_1.id, application_id: @application_1.id)
     PetApplication.create(pet_id: @pet_2.id, application_id: @application_1.id)
+    PetApplication.create(pet_id: @pet_2.id, application_id: @application_2.id)
   end
 
   it "I can see info and all pet's in the application" do
@@ -52,5 +61,16 @@ RSpec.describe "When I visit an application's show page" do
     expect(page).to have_content("Credence")
     click_on "Gloria"
     expect(current_path).to eq("/pets/#{@pet_1.id}")
+  end
+
+  it "has a link to approve applications for each pet" do
+    visit "/applications/#{@application_1.id}"
+
+    within ".pet-#{@pet_2.id}" do
+      click_on "Approve application"
+    end
+    expect(current_path).to eq("/pets/#{@pet_2.id}")
+    expect(page).to have_content("Adoption is Pending")
+    expect(page).to have_content("On Hold For: #{@application_1.name}")
   end
 end

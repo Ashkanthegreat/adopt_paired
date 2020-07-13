@@ -25,6 +25,7 @@
     <p>Adoption is a go!</p>
   <% else %>
     <p>Adoption is Pending</p>
+    <p>On Hold For: <%= @pet.applications.first.name %></p>
   <% end %>
 
   <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %>
