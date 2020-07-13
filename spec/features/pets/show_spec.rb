@@ -45,7 +45,6 @@ RSpec.describe "When visiting a pet's page" do
     PetApplication.create(pet_id: @pet_1.id, application_id: @application_1.id)
     PetApplication.create(pet_id: @pet_2.id, application_id: @application_1.id)
     PetApplication.create(pet_id: @pet_2.id, application_id: @application_2.id)
-    PetApplication.create(pet_id: @pet_3.id, application_id: @application_2.id)
 
   end
 
@@ -69,5 +68,13 @@ RSpec.describe "When visiting a pet's page" do
 
     click_on "Chandler"
     expect(current_path).to eq("/applications/#{@application_1.id}")
+  end
+
+  it "will show a message if pat applications is empty" do
+    visit "/pets/#{@pet_3.id}"
+
+    click_on "View all Applicants"
+    expect(current_path).to eq("/pets/#{@pet_3.id}/applicants")
+    expect(page).to have_content("There are no applicants for this pet")
   end
 end
