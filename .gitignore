@@ -1,7 +1,6 @@
 # Ignore test-related files
 /coverage.data
 /coverage/
-/Gemfile.lock
 
 
 # See https://help.github.com/articles/ignoring-files for more about ignoring files.
