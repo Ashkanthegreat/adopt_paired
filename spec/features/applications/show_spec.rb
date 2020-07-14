@@ -82,4 +82,31 @@ RSpec.describe "When I visit an application's show page" do
     visit "/applications/#{@application_2.id}"
     expect(page).to_not have_content("Approve application")
   end
+
+  it "has the ability to revoke an approved application" do
+    visit "/applications/#{@application_1.id}"
+
+    within ".pet-#{@pet_2.id}" do
+      click_on "Approve application"
+    end
+
+    visit "/applications/#{@application_1.id}"
+
+    within ".pet-#{@pet_2.id}" do
+      expect(page).to_not have_content("Approve application")
+    end
+    within ".pet-#{@pet_2.id}" do
+      expect(page).to have_content("Revoke application")
+      click_on "Revoke application"
+    end
+
+    expect(current_path).to eq("/applications/#{@application_1.id}")
+    within ".pet-#{@pet_2.id}" do
+      expect(page).to have_content("Approve application")
+    end
+
+    visit "/pets/#{@pet_2.id}"
+    expect(page).to_not have_content("Adoption is Pending")
+
+  end
 end

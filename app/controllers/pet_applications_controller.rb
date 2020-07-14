@@ -8,10 +8,17 @@ class PetApplicationsController < ApplicationController
     pet = Pet.find(params[:pet_id])
     if pet.adoptability == true
       pet.adoptability = false
+    else
+      pet.adoptability = true
     end
     application = PetApplication.where(pet_id: params[:pet_id], application_id: params[:application_id]).first
     application.update(approved: true)
     pet.save
-    redirect_to "/pets/#{pet.id}"
+    app = Application.find(params[:application_id])
+    if pet.adoptability == true
+      redirect_to "/applications/#{app.id}"
+    else
+      redirect_to "/pets/#{pet.id}"
+    end
   end
 end
