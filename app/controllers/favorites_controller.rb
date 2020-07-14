@@ -1,6 +1,7 @@
 class FavoritesController < ApplicationController
   def index
-    @favorites = session[:favorites]
+    @favorites = favorites
+    @pets = Pet.all
   end
 
   def update
@@ -22,6 +23,15 @@ class FavoritesController < ApplicationController
   def destroy_all
     session[:favorites].clear
     redirect_to "/favorites"
+  end
+
+
+  private
+
+  def favorites
+    session[:favorites].to_a.map do |id|
+      Pet.find(id)
+    end
   end
 
 end

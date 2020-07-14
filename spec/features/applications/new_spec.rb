@@ -53,7 +53,10 @@ RSpec.describe "When I visit a new application page" do
 
     expect(current_path).to eq("/favorites")
     expect(page).to have_content("You have successfully submitted your application")
-    expect(page).to_not have_content("Gloria")
+
+    within("#favorites") do
+      expect(page).to_not have_content("Gloria")
+    end
   end
 
   it "Shows error messages when applicant does not fill out all required info" do
