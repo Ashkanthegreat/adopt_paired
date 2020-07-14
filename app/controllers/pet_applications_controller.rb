@@ -9,8 +9,10 @@ class PetApplicationsController < ApplicationController
     if pet.adoptability == true
       pet.adoptability = false
     end
-    applicant = Application.find(params["application_id"])
-    pet.applications.to_a.delete_if {|a| a != applicant.id}
+    application = PetApplication.where(pet_id: params[:pet_id], application_id: params[:application_id]).first
+    application.update(approved: true)
+    # applicant = Application.find(params["application_id"])
+    # pet.applications.to_a.delete_if {|a| a != applicant.id}
     pet.save
     redirect_to "/pets/#{pet.id}"
   end

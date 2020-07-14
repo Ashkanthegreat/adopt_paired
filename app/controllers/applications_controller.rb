@@ -11,7 +11,7 @@ class ApplicationsController < ApplicationController
 
     if application.save
       params["pet"].each do |id|
-        PetApplication.create!(pet_id: id.to_i, application_id: application.id)
+        PetApplication.create(pet_id: id.to_i, application_id: application.id)
         session[:favorites].delete(id.to_i)
       end
       flash[:success] = "You have successfully submitted your application"

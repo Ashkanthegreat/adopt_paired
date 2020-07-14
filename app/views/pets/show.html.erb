@@ -21,11 +21,9 @@
   <p>Age: <%= @pet.approx_age %></p>
   <p>Sex: <%= @pet.sex %></p>
 
-  <% if @pet.adoptability == true%>
-    <p>Adoption is a go!</p>
-  <% else %>
+  <% if @pet.adoptability == false %>
     <p>Adoption is Pending</p>
-    <p>On Hold For: <%= @pet.applications.first.name %></p>
+    <p>On Hold For: <%= @name.name %></p>
   <% end %>
 
   <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %>

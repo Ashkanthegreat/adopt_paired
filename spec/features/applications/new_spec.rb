@@ -9,22 +9,19 @@ RSpec.describe "When I visit a new application page" do
       name: "Gloria",
       description: "682 lbs of hugs and love",
       approx_age: 5,
-      sex: "F",
-      adoptability: false)
+      sex: "F")
 
     @pet_2 = shelter_2.pets.create(image: "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/01/12201051/cute-puppy-body-image.jpg",
       name: "Credence",
       description: "A little shy at first but I'm a cuddler once I get to know you",
       approx_age: 2,
-      sex: "M",
-      adoptability: true)
+      sex: "M")
 
     @pet_3 = shelter_1.pets.create(image: "https://images.unsplash.com/photo-1531338410663-88d33379ba03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
       name: "Creole",
       description: "I don't like other animal but I love my person",
       approx_age: 4,
-      sex: "M",
-      adoptability: true)
+      sex: "M")
   end
 
   it "I can select which favorited pets I want to apply for" do

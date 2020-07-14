@@ -5,6 +5,8 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
+    @name = @pet.pet_applications.find_by(approved: true).application if
+    !@pet.pet_applications.find_by(approved: true).nil?
   end
 
   def edit
