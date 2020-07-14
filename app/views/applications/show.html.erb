@@ -10,8 +10,13 @@
 <p>Applying for:</p>
 <%= @application.pets.each do |pet| %>
 <section class = pet-<%= pet.id %>>
-  <p><%=link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
-  <p><%= link_to "Approve application", "/applications/#{@application.id}/pets/#{pet.id}", method: :patch %></p>
+  <% if pet.adoptability == true %>
+    <p><%=link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
+    <p><%= link_to "Approve application", "/applications/#{@application.id}/pets/#{pet.id}", method: :patch %></p>
+  <% else %>
+    <p><%=link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
+    <p>Pet already on Hold</p>
+  <% end %>
 </section>
 <% end %>
 

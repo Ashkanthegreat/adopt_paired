@@ -71,4 +71,15 @@ RSpec.describe "When I visit an application's show page" do
 
     expect(page).to have_content("On Hold For: #{@application_1.name}")
   end
+
+  it "won't show application approval button if pet already has an approved application" do
+    visit "/applications/#{@application_1.id}"
+
+    within ".pet-#{@pet_2.id}" do
+      click_on "Approve application"
+    end
+
+    visit "/applications/#{@application_2.id}"
+    expect(page).to_not have_content("Approve application")
+  end
 end
