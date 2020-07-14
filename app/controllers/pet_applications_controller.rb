@@ -21,4 +21,5 @@ class PetApplicationsController < ApplicationController
       redirect_to "/pets/#{pet.id}"
     end
   end
+
 end

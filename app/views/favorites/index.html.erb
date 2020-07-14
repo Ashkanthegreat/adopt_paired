@@ -2,27 +2,32 @@
   <h3>All your Favorites</h3>
   <p><%= link_to "Apply for a new friend!", '/applications/new' %></p>
 
-
+<section id="favorites">
   <% if favorites.count > 0 %>
     <% @favorites.each do |favorite| %>
-      <section id= "favorite-<%= favorite %>">
-        <%= link_to "Remove From Favorites", "/favorites/#{favorite}", method: :delete %>
+      <section id= "favorite-<%= favorite.id %>">
+        <%= link_to "Remove From Favorites", "/favorites/#{favorite.id}", method: :delete %>
 
-        <% pet = Pet.find(favorite) %>
-        <p><%= pet.name %></p>
-        <img src= "<%= pet.image %>">
+        <p><%= favorite.name %></p>
+        <img src= "<%= favorite.image %>">
       </section>
     <% end %>
   <% else %>
     <p>You have no favorited pets</p>
   <% end %>
 
-  <% flash.each do |name, msg| %>
-  <section class = <%= name %>>
-    <p><%= msg %></p>
   </section>
+
+  <h2>Pending Applications</h2>
+<section id="appPend">
+  <% @pets.each do |pet| %>
+    <% if pet.pet_applications.count > 0 %>
+      <p>Name: <%= link_to pet.name, "/pets/#{pet.id}" %></p>
+    <% end %>
   <% end %>
-  
+</section>
+
+
   <footer><%= link_to "Remove all favorited pets", "/favorites", method: :delete %></footer>
 
 

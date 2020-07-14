@@ -58,7 +58,41 @@ RSpec.describe "When I visit the favorites iindex page" do
   end
 
   it "will give a message if there are no pets favorited" do
+
     visit '/favorites'
+
     expect(page).to have_content("You have no favorited pets")
+  end
+
+  it "can see a list of pets with pending applications" do
+    visit "/pets/#{@pet_1.id}"
+
+    click_on "Favorite this Pet"
+
+    visit "/favorites"
+
+    click_on "Apply for a new friend!"
+    expect(current_path).to eq('/applications/new')
+
+    within ".Gloria" do
+      check "pet[]"
+    end
+
+    fill_in :name, with: "Chandler"
+    fill_in :address, with: "134 Iron rd"
+    fill_in :city, with: "Mead"
+    fill_in :state, with: "CO"
+    fill_in :zip, with: "80542"
+    fill_in :phone_num, with: "7206567856"
+    fill_in :description, with: "I love me some hippos"
+    click_on "Submit Application"
+
+    expect(current_path).to eq("/favorites")
+
+    within("#appPend") do
+      expect(page).to have_link("Gloria")
+    end
+
+
   end
 end

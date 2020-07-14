@@ -1,15 +1,9 @@
 <body>
   <h3><%= @pet.name %></h3>
 
-  <% flash.each do |name, msg| %>
-  <section class = <%= name %>>
-    <p><%= msg %></p>
-  </section>
-  <% end %>
-
   <%= link_to "View all Applicants", "/pets/#{@pet.id}/applicants" %>
 
-  <img src= <%= @pet.image %>>
+  <img src= <%= @pet.image %> height="350" width="350">
 
   <% if favorites.include?(@pet.id) %>
     <%= link_to "Remove From Favorites", "/favorites/#{@pet.id}", method: :delete %>
