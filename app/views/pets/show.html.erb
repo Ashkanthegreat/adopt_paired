@@ -1,13 +1,9 @@
 <body>
   <h3><%= @pet.name %></h3>
 
-  <% flash.each do |name, msg| %>
-  <section class = <%= name %>>
-    <p><%= msg %></p>
-  </section>
-  <% end %>
+  <%= link_to "View all Applicants", "/pets/#{@pet.id}/applicants" %>
 
-  <img src= <%= @pet.image %>>
+  <img src= <%= @pet.image %> height="350" width="350">
 
   <% if favorites.include?(@pet.id) %>
     <%= link_to "Remove From Favorites", "/favorites/#{@pet.id}", method: :delete %>
@@ -19,10 +15,9 @@
   <p>Age: <%= @pet.approx_age %></p>
   <p>Sex: <%= @pet.sex %></p>
 
-  <% if @pet.adoptability == true%>
-    <p>Adoption is a go!</p>
-  <% else %>
+  <% if @pet.adoptability == false %>
     <p>Adoption is Pending</p>
+    <p>On Hold For: <%= @name.name %></p>
   <% end %>
 
   <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %>

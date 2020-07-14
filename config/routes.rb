@@ -30,5 +30,11 @@ Rails.application.routes.draw do
   delete "/favorites/:pet_id", to: 'favorites#destroy'
   delete "/favorites", to: 'favorites#destroy_all'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "/applications/new", to: 'applications#new'
+  post "/applications", to: 'applications#create'
+  get '/applications/:id', to: 'applications#show'
+
+  get '/pets/:pet_id/applicants', to: 'pet_applications#index'
+  patch '/applications/:application_id/pets/:pet_id', to: 'pet_applications#update'
+   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

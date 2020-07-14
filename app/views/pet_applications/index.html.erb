@@ -1,0 +1,9 @@
+<h1>All Applicants</h1>
+
+<% if @applicants != [] %>
+  <%= @applicants.each do |applicant| %>
+    <%= link_to "#{applicant.name}", "/applications/#{applicant.id}" %>
+  <% end %>
+<% else %>
+  <p>There are no applicants for this pet</p>
+<% end %>

@@ -1,0 +1,23 @@
+<h1>Application for <%= @application.name %></h1>
+
+<h2>Contact Info:</h2>
+<%= @application.address %>
+<%= @application.city %>
+<%= @application.state %>
+<%= @application.zip %>
+<%= @application.phone_num %>
+
+<p>Applying for:</p>
+<%= @application.pets.each do |pet| %>
+<section class = pet-<%= pet.id %>>
+  <% if pet.adoptability == true %>
+    <p><%=link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
+    <p><%= link_to "Approve application", "/applications/#{@application.id}/pets/#{pet.id}", method: :patch %></p>
+  <% else %>
+    <p><%=link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
+    <p><%= link_to "Revoke application", "/applications/#{@application.id}/pets/#{pet.id}", method: :patch %></p>
+  <% end %>
+</section>
+<% end %>
+
+<%= @application.description %>
