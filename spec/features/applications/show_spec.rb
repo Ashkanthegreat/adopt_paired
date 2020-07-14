@@ -9,22 +9,19 @@ RSpec.describe "When I visit an application's show page" do
       name: "Gloria",
       description: "682 lbs of hugs and love",
       approx_age: 5,
-      sex: "F",
-      adoptability: false)
+      sex: "F")
 
     @pet_2 = shelter_2.pets.create(image: "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/01/12201051/cute-puppy-body-image.jpg",
       name: "Credence",
       description: "A little shy at first but I'm a cuddler once I get to know you",
       approx_age: 2,
-      sex: "M",
-      adoptability: true)
+      sex: "M")
 
     @pet_3 = shelter_1.pets.create(image: "https://images.unsplash.com/photo-1531338410663-88d33379ba03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
       name: "Creole",
       description: "I don't like other animal but I love my person",
       approx_age: 4,
-      sex: "M",
-      adoptability: true)
+      sex: "M")
 
     @application_1 = Application.create(name: "Chandler",
       address: "134 Italy way",
@@ -34,8 +31,17 @@ RSpec.describe "When I visit an application's show page" do
       phone_num: "7208765647",
       description: "Love em all")
 
+    @application_2 = Application.create(name: "Ash",
+    address: "176 Coocaracha way",
+    city: "Denvert",
+    state: "CO",
+    zip: "89765",
+    phone_num: "72087699876",
+    description: "My Collection is almost complete!")
+
     PetApplication.create(pet_id: @pet_1.id, application_id: @application_1.id)
     PetApplication.create(pet_id: @pet_2.id, application_id: @application_1.id)
+    PetApplication.create(pet_id: @pet_2.id, application_id: @application_2.id)
   end
 
   it "I can see info and all pet's in the application" do
@@ -52,5 +58,17 @@ RSpec.describe "When I visit an application's show page" do
     expect(page).to have_content("Credence")
     click_on "Gloria"
     expect(current_path).to eq("/pets/#{@pet_1.id}")
+  end
+
+  it "has a link to approve applications for each pet" do
+    visit "/applications/#{@application_1.id}"
+
+    within ".pet-#{@pet_2.id}" do
+      click_on "Approve application"
+    end
+    expect(current_path).to eq("/pets/#{@pet_2.id}")
+    expect(page).to have_content("Adoption is Pending")
+
+    expect(page).to have_content("On Hold For: #{@application_1.name}")
   end
 end
