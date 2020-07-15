@@ -72,6 +72,15 @@ RSpec.describe "shelters show page" do
     expect(page).to have_content("All fields except image must filled.")
   end
 
+  it 'Can click on the shelters name and it will take you to the shelters show page' do
+
+    visit "/shelters/#{@shelter_1.id}"
+
+    click_on "Habitat for Hippos"
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}")
+
+  end   
   it "has statistics on the show page regarding reviews and applications" do
     @pet_1 = @shelter_1.pets.create(image: "https://resize.hswstatic.com/w_907/gif/hippo-sunscreen.jpg",
     name: "Gloria",

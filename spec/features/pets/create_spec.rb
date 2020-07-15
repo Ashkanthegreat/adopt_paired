@@ -45,4 +45,20 @@ RSpec.describe "When visiting the Pets Index page" do
       expect(page).to have_content("Moto Moto")
 
   end
+
+  it "will give an error if create info is imcomplete" do
+    shelter_1 = Shelter.create(name: "Habitat for Hippos and Lemurs", address: "184 w Plaintiff rd", city: "Denver", state: "CO", zip: 80504)
+
+    visit "/shelters/#{shelter_1.id}/pets"
+
+    click_on "Create Pet"
+
+    fill_in :image, with: "https://vignette.wikia.nocookie.net/godmodes/images/5/51/Moto_action.png/revision/latest?cb=20190309034710"
+    fill_in :name, with: "Moto Moto"
+    fill_in :description, with: "Moto moto likes you"
+    fill_in :approx_age, with: "8"
+
+    click_on "Create Pet"
+    expect(page).to have_content("All fields must be filled")
+  end
 end

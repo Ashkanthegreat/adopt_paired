@@ -1,4 +1,4 @@
-<h1>Application for <%= @application.name %></h1>
+<h1>Application for <%=link_to "#{@application.name}", "/applications/#{@application.id}" %></h1>
 
 <h2>Contact Info:</h2>
 <%= @application.address %>

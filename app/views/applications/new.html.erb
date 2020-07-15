@@ -3,7 +3,7 @@
 <%= form_tag "/applications" do %>
   <% @pets.each do |pet| %>
   <section class = "<%= pet.name %>">
-    <%= label_tag pet.name %>
+    <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
     <%= check_box_tag "pet[]", pet.id, false%>
   </section>
   <% end %>

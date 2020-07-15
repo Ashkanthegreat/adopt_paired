@@ -9,7 +9,7 @@
         <%= link_to "Remove From Favorites", "/favorites/#{favorite.id}", method: :delete %>
 
         <p><%= favorite.name %></p>
-        <img src= "<%= favorite.image %>">
+        <img src= "<%= favorite.image %>" height="350" width="350">
       </section>
     <% end %>
   <% else %>
