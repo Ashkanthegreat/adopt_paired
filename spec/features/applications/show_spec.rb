@@ -109,4 +109,19 @@ RSpec.describe "When I visit an application's show page" do
     expect(page).to_not have_content("Adoption is Pending")
 
   end
+
+  it 'Can click on the pets name and it will take you to that pets show page' do
+
+    visit "/applications/#{@application_1.id}"
+
+    within ".pet-#{@pet_2.id}" do
+      click_on "Credence"
+    end
+
+    expect(current_path).to eq("/pets/#{@pet_2.id}")
+
+  end
+
+  it "can click on applicants name and it will take them to the applicants show page" do
+  end
 end

@@ -38,4 +38,24 @@ RSpec.describe "Edit a shelter" do
     expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
   end
 
+  it "will flash message if it fails to edit a shelter" do
+    visit "/shelters/#{@shelter_1.id}"
+
+    expect(page).to_not have_content("Aviary Ambiance")
+
+    click_on "Update Shelter"
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+
+    fill_in :name, with: "Aviary Ambiance"
+    fill_in :address, with: "654 Columbine ln"
+    fill_in :city, with: "Dallas"
+    fill_in :state, with: "Texas"
+
+    click_on 'Update Shelter'
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+    expect(page).to have_content("All fields must be filled")
+  end
+
 end

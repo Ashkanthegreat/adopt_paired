@@ -30,4 +30,14 @@ RSpec.describe "When deleting a pet" do
     expect(current_path).to eq('/pets')
     expect(page).to_not have_content("Gloria")
   end
+
+  it "removes pet from favorites if deleted" do
+    visit "/pets/#{@pet_1.id}"
+    click_on "Favorite this Pet"
+    visit "/pets/#{@pet_1.id}"
+    click_on "Delete Pet"
+
+    expect(page).to have_content("Favorite Pets: 0")
+
+  end
 end

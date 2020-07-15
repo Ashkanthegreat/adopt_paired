@@ -1,5 +1,5 @@
 <body>
-  <h3><%= @pet.name %></h3>
+  <h3><%= link_to @pet.name, "/pets/#{@pet.id}" %></h3>
 
   <%= link_to "View all Applicants", "/pets/#{@pet.id}/applicants" %>
 
@@ -21,6 +21,7 @@
   <% end %>
 
   <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %>
-
-  <%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %>
+  <% if @pet.adoptability == true %>
+    <%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %>
+  <% end %>
 </body>

@@ -56,5 +56,23 @@ RSpec.describe "When editing a Pet" do
       click_on "Edit #{@pet_1.name}"
       expect(current_path).to eq("/pets/#{@pet_1.id}/edit")
     end
+
+    it "will give an error if create info is imcomplete" do
+      visit "/pets/#{@pet_1.id}"
+
+      click_on "Update Pet"
+
+      expect(current_path).to eq("/pets/#{@pet_1.id}/edit")
+      expect(page).to_not have_content("We do not recommend solo cuddling")
+
+      fill_in :image, with: "https://resize.hswstatic.com/w_907/gif/hippo-sunscreen.jpg"
+      fill_in :name, with: "Gloria"
+      fill_in :description, with: "682 lbs of hugs and love. We do not recommend solo cuddling"
+      fill_in :approx_age, with: 5
+
+      click_on "Update Pet"
+      expect(page).to have_content("All fields must be filled")
+
+    end
   end
 end
