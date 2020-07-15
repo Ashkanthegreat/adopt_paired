@@ -3,9 +3,7 @@ BE Mod 2 Week 2/3 Pair Project
 
 ## Background and Description
 
-"Adopt Don't Shop Paired" is a fictitious pet adoption platform where visitors can favorite pets and apply to adopt their newest furry friend.
-
-Students will be put into pairs to complete the project.
+"Adopt Don't Shop Paired" is a fictitious Pokemon adoption application.  Users can create Shelters and Pets(Pokemon).  On the Shelters, users can create Reviews of that Shelter.  Users can also Favorite a Pet.  Once the pet has been Favorited, a user can apply to adopt that Pet. 
 
 ## Learning Goals
 
