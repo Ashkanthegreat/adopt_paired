@@ -109,4 +109,5 @@ RSpec.describe "When I visit an application's show page" do
     expect(page).to_not have_content("Adoption is Pending")
 
   end
+
 end
