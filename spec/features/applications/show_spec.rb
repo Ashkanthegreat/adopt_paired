@@ -113,6 +113,7 @@ RSpec.describe "When I visit an application's show page" do
   it 'Can click on the pets name and it will take you to that pets show page' do
 
     visit "/applications/#{@application_1.id}"
+    save_and_open_page
 
     within ".pet-#{@pet_2.id}" do
       click_on "Credence"
@@ -120,5 +121,8 @@ RSpec.describe "When I visit an application's show page" do
 
     expect(current_path).to eq("/pets/#{@pet_2.id}")
 
+  end
+
+  it "can click on applicants name and it will take them to the applicants show page" do
   end
 end

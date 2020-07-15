@@ -1,5 +1,5 @@
 <body>
-  <h3><%= @pet.name %></h3>
+  <h3><%= link_to @pet.name, "/pets/#{@pet.id}" %></h3>
 
   <%= link_to "View all Applicants", "/pets/#{@pet.id}/applicants" %>
 
