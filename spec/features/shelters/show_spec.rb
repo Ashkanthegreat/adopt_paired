@@ -67,8 +67,17 @@ RSpec.describe "shelters show page" do
     click_on "Update Review"
 
     expect(current_path).to eq("/shelters/#{@shelter_1.id}/#{@review1.id}/edit")
-  
+
 
     expect(page).to have_content("All fields except image must filled.")
+  end
+
+  it 'Can click on the shelters name and it will take you to the shelters show page' do
+
+    visit "/shelters/#{@shelter_1.id}"
+
+    click_on "Habitat for Hippos"
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}")
   end
 end
