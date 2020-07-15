@@ -27,4 +27,9 @@
   <%= link_to "Delete Review", "/shelters/#{@shelter.id}/#{review.id}", method: :delete%>
 </section>
 <% end %>
+
+<p>Stats</p>
+<p>Rating: <%= @shelter.avg_rating %></p>
+<p>Pets: <%= @shelter.pets.count %></p>
+<p>Applications: <%= @shelter.applications_count %></p>
 </body>

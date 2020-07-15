@@ -113,7 +113,6 @@ RSpec.describe "When I visit an application's show page" do
   it 'Can click on the pets name and it will take you to that pets show page' do
 
     visit "/applications/#{@application_1.id}"
-    save_and_open_page
 
     within ".pet-#{@pet_2.id}" do
       click_on "Credence"
