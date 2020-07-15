@@ -67,8 +67,38 @@ RSpec.describe "shelters show page" do
     click_on "Update Review"
 
     expect(current_path).to eq("/shelters/#{@shelter_1.id}/#{@review1.id}/edit")
-  
+
 
     expect(page).to have_content("All fields except image must filled.")
+  end
+
+  it "has statistics on the show page regarding reviews and applications" do
+    @pet_1 = @shelter_1.pets.create(image: "https://resize.hswstatic.com/w_907/gif/hippo-sunscreen.jpg",
+    name: "Gloria",
+    description: "682 lbs of hugs and love",
+    approx_age: 5,
+    sex: "F")
+
+    @pet_3 = @shelter_1.pets.create(image: "https://images.unsplash.com/photo-1531338410663-88d33379ba03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+    name: "Creole",
+    description: "I don't like other animal but I love my person",
+    approx_age: 4,
+    sex: "M")
+
+    @application_1 = Application.create(name: "Chandler",
+    address: "134 Italy way",
+    city: "Longmont",
+    state: "CO",
+    zip: "89767",
+    phone_num: "7208765647",
+    description: "Love em all")
+
+    PetApplication.create(pet_id: @pet_1.id, application_id: @application_1.id)
+
+    visit "/shelters/#{@shelter_1.id}"
+
+    expect(page).to have_content("Rating: 4.5")
+    expect(page).to have_content("Pets: 2")
+    expect(page).to have_content("Applications: 1")
   end
 end
